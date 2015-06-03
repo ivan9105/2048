@@ -1,20 +1,21 @@
 package com.barleybreak.screen.help;
 
+import com.barleybreak.screen.MainMenuScreen;
 import com.barleybreak.util.Assets;
 import com.barleybreak.util.Settings;
 import com.framework.Game;
 import com.framework.Graphics;
 import com.framework.Screen;
-import com.framework.Input.TouchEvent;
 import com.framework.Input.KeyEvent;
+import com.framework.Input.TouchEvent;
 
 import java.util.List;
 
 /**
- * Created by Иван on 02.06.2015.
+ * Created by Иван on 03.06.2015.
  */
-public class HelpScreen extends Screen {
-    public HelpScreen(Game game) {
+public class HelpScreenThird extends Screen {
+    public HelpScreenThird(Game game) {
         super(game);
     }
 
@@ -28,7 +29,7 @@ public class HelpScreen extends Screen {
             TouchEvent event = touchEvents.get(i);
             if(event.type == TouchEvent.TOUCH_UP) {
                 if(event.x > 256 && event.y > 416 ) {
-                    game.setScreen(new HelpScreenSecond(game));
+                    game.setScreen(new MainMenuScreen(game));
                     if(Settings.soundEnabled)
                         Assets.click.play(1);
                     return;
@@ -41,7 +42,7 @@ public class HelpScreen extends Screen {
     public void present(float deltaTime) {
         Graphics g = game.getGraphics();
         g.drawPixmap(Assets.background, 0, 0);
-        g.drawPixmap(Assets.help1, 64, 100);
+        g.drawPixmap(Assets.help3, 64, 100);
         g.drawPixmap(Assets.buttons, 256, 416, 0, 64, 64, 64);
     }
 

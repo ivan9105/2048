@@ -11,10 +11,10 @@ import com.framework.Input.KeyEvent;
 import java.util.List;
 
 /**
- * Created by Иван on 02.06.2015.
+ * Created by Иван on 03.06.2015.
  */
-public class HelpScreen extends Screen {
-    public HelpScreen(Game game) {
+public class HelpScreenSecond extends Screen {
+    public HelpScreenSecond(Game game) {
         super(game);
     }
 
@@ -28,7 +28,7 @@ public class HelpScreen extends Screen {
             TouchEvent event = touchEvents.get(i);
             if(event.type == TouchEvent.TOUCH_UP) {
                 if(event.x > 256 && event.y > 416 ) {
-                    game.setScreen(new HelpScreenSecond(game));
+                    game.setScreen(new HelpScreenThird(game));
                     if(Settings.soundEnabled)
                         Assets.click.play(1);
                     return;
@@ -41,7 +41,7 @@ public class HelpScreen extends Screen {
     public void present(float deltaTime) {
         Graphics g = game.getGraphics();
         g.drawPixmap(Assets.background, 0, 0);
-        g.drawPixmap(Assets.help1, 64, 100);
+        g.drawPixmap(Assets.help2, 64, 100);
         g.drawPixmap(Assets.buttons, 256, 416, 0, 64, 64, 64);
     }
 
