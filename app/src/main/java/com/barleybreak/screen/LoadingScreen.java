@@ -31,7 +31,6 @@ public class LoadingScreen extends Screen {
         Assets.gameOver = g.newPixmap("gameover.png", PixmapFormat.ARGB4444);
         Assets.square = g.newPixmap("square.png", PixmapFormat.ARGB4444);
         Assets.squarex = g.newPixmap("squarex.png", PixmapFormat.ARGB4444);
-        Assets.buttons_turn = g.newPixmap("button_turn.png", PixmapFormat.ARGB4444);
 
         Assets.click = game.getAudio().newSound("click.ogg");
         Assets.bitten = game.getAudio().newSound("bitten.ogg");
