@@ -2,6 +2,7 @@ package com.framework.impl;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -106,5 +107,12 @@ public abstract class AndroidGame extends Activity implements Game {
 
     public Screen getCurrentScreen() {
         return screen;
+    }
+
+    public void exit() {
+        finish();
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(0);
+        super.onDestroy();
     }
 }
