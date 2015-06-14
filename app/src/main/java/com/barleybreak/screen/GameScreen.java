@@ -99,15 +99,15 @@ public class GameScreen extends Screen {
         for(int i = 0; i < len; i++) {
             TouchEvent event = touchEvents.get(i);
             if(event.type == Input.TouchEvent.TOUCH_UP) {
-                if(event.x > 80 && event.x <= 240) {
-                    if(event.y > 100 && event.y <= 148) {
+                if(event.x > 60 && event.x <= 240) {
+                    if(event.y > 175 && event.y <= 225) {
                         if(Settings.soundEnabled)
                             Assets.click.play(1);
                         state = GameState.Running;
                         return;
                     }
 
-                    if(event.y > 148 && event.y < 196) {
+                    if(event.y > 235 && event.y < 285) {
                         if(Settings.soundEnabled)
                             Assets.click.play(1);
                         game.setScreen(new MainMenuScreen(game));
@@ -187,7 +187,7 @@ public class GameScreen extends Screen {
 
     private void drawPausedUI() {
         Graphics g = game.getGraphics();
-        g.drawPixmap(Assets.pause, 80, 100);
+        g.drawPixmap(Assets.pause, 60, 175);
         g.drawLine(0, 416, 480, 416, Color.BLACK);
     }
 
