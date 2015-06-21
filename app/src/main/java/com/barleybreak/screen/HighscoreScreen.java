@@ -76,29 +76,51 @@ public class HighscoreScreen extends Screen {
         for (int i = 0; i < len; i++) {
             char character = line.charAt(i);
 
-            if (character == ' ') {
-                x += 20;
-                continue;
-            }
-
             int srcX = 0;
             int srcWidth = 0;
 
-            if (character == '.') {
-                srcX = 200;
+            if (character == '1'){
+                srcX = 0;
                 srcWidth = 10;
-            } else if(character == ':') {
-                srcX = 210;
-                srcWidth = 13;
-            } else if(character == '-') {
-                srcX = 223;
-                srcWidth = 20;
-            } else {
-                srcX = (character - '0') * 20;
-                srcWidth = 20;
+            } else if (character == '2') {
+                srcX = 10;
+                srcWidth = 25;
+            } else if (character == '3') {
+                srcX = 36;
+                srcWidth = 24;
+            } else if (character == '4') {
+                srcX = 61;
+                srcWidth = 27;
+            } else if (character == '5') {
+                srcX = 89;
+                srcWidth = 22;
+            } else if (character == '6') {
+                srcX = 112;
+                srcWidth = 22;
+            } else if (character == '7') {
+                srcX = 138;
+                srcWidth = 21;
+            } else if (character == '8') {
+                srcX = 160;
+                srcWidth = 19;
+            } else if (character == '9') {
+                srcX = 179;
+                srcWidth = 23;
+            } else if (character == '0') {
+                srcX = 203;
+                srcWidth = 24;
+            } else if (character == '.') {
+                srcX = 228;
+                srcWidth = 10;
+            } else if (character == ':') {
+                srcX = 239;
+                srcWidth = 10;
+            } else if (character == '-') {
+                srcX = 250;
+                srcWidth = 14;
             }
 
-            g.drawPixmap(Assets.numbers, x, y, srcX, 0, srcWidth, 32);
+            g.drawPixmap(Assets.numbers, x, y, srcX, 0, srcWidth, 54);
             x += srcWidth;
         }
     }

@@ -232,14 +232,6 @@ public class GameScreen extends Screen {
             }
 
             if (character == '2') {
-                //25 x2 - x1
-                //10 позиция x1
-                g.drawPixmap(Assets.numbers, x, y, 10, 0, 25, 54);
-            }
-
-            if (character == '2') {
-                //25 x2 - x1
-                //10 позиция x1
                 g.drawPixmap(Assets.numbers, x, y, 10, 0, 25, 54);
             }
 
@@ -257,14 +249,6 @@ public class GameScreen extends Screen {
 
             if (character == '6') {
                 g.drawPixmap(Assets.numbers, x, y, 112, 0, 22, 54);
-            }
-
-            if (character == '7') {
-                g.drawPixmap(Assets.numbers, x, y, 138, 0, 21, 54);
-            }
-
-            if (character == '8') {
-                g.drawPixmap(Assets.numbers, x, y, 160, 0, 19, 54);
             }
 
             if (character == '7') {
