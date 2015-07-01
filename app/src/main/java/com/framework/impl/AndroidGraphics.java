@@ -6,6 +6,7 @@ import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
@@ -117,6 +118,20 @@ public class AndroidGraphics implements Graphics {
 
     public void drawPixmap(Pixmap pixmap, int x, int y) {
         canvas.drawBitmap(((AndroidPixmap)pixmap).bitmap, x, y, null);
+    }
+
+    @Override
+    public void drawPixmap(Pixmap pixmap, int x, int y, int weight, int height) {
+        int oldWidth = pixmap.getWidth();
+        int oldHeight = pixmap.getHeight();
+        float scaleWidth = ((float) weight) / oldWidth;
+        float scaleHeight = ((float) height) / oldHeight;
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        Bitmap bitmap = ((AndroidPixmap) pixmap).bitmap;
+        Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0, oldWidth, oldHeight, matrix, false);
+        canvas.drawBitmap(resizedBitmap, x, y, paint);
     }
 
     public int getWidth() {
