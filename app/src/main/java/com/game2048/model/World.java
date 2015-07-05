@@ -10,10 +10,12 @@ import java.util.List;
  * Created by Иван on 26.06.2015.
  */
 public class World {
-    List<Block> blocks;
+    private List<Block> blocks;
+    private Block[][] matrix;
 
     public World(Game game) {
         blocks = new ArrayList<>();
+        matrix = new Block[4][4];
 
         Graphics g = game.getGraphics();
         int widthScreen = g.getWidth();
@@ -61,9 +63,19 @@ public class World {
         blocks.add(new Block(startX + (margin * 2) + (size * 2), startY + (margin * 3) + (size * 3)));
         //[3, 3]
         blocks.add(new Block(startX + (margin * 3) + (size * 3), startY + (margin * 3) + (size * 3)));
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                matrix[i][j] = blocks.get(i + j);
+            }
+        }
     }
 
     public List<Block> getBlocks() {
         return blocks;
+    }
+
+    public Block[][] getMatrix() {
+        return matrix;
     }
 }
