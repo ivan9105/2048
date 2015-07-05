@@ -31,8 +31,7 @@ public class GameScreen extends Screen {
     public void present(float deltaTime) {
         Graphics g = game.getGraphics();
         g.drawPixmap(Assets.bg, 0, 0);
-//        Block block = world.getBlocks().get(0);
-//        g.drawRectWithText(0, 0, 50, 50, Color.BLACK, "2048", Color.WHITE);
+
         List<Block> blocks = world.getBlocks();
         for (Block block : blocks) {
             g.drawRectWithText(block.getX(), block.getY(), 55, 55, Color.BLACK, "2048", Color.GREEN);
