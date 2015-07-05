@@ -15,6 +15,8 @@ public interface Graphics {
 
     public void drawRect(int x, int y, int width, int height, int color);
 
+    public void drawRectWithText(int x, int y, int width, int height, int color, String text, int textColor);
+
     public void myDrawRect(int x, int y, int width, int height, int color);
 
     public void drawPixmap(Pixmap pixmap, int x, int y, int srcX, int srcY,

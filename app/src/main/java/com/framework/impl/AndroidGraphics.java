@@ -10,6 +10,8 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.text.TextPaint;
 
 import com.framework.Graphics;
 import com.framework.Pixmap;
@@ -95,6 +97,28 @@ public class AndroidGraphics implements Graphics {
         canvas.drawRect(x, y, x + width - 1, y + width - 1, paint);
     }
 
+    @Override
+    public void drawRectWithText(int x, int y, int width, int height, int color, String text, int textColor) {
+        paint.setColor(color);
+        paint.setStyle(Style.FILL);
+        int right = x + width - 1;
+        int bottom = y + width - 1;
+        Rect rect = new Rect();
+        rect.set(x, y, right, bottom);
+
+        canvas.drawRect(rect, paint);
+
+        Typeface tf = Typeface.create("Arial", Typeface.BOLD);
+        paint.setColor(textColor);
+        paint.setStyle(Style.STROKE);
+        paint.setTextSize(21);
+        paint.setTypeface(tf);
+        float textWidth = paint.measureText(text);
+
+        //hard code
+        canvas.drawText(text, rect.centerX() - textWidth / 2, rect.centerY() + 7, paint);
+    }
+
     public void myDrawRect(int x, int y, int width, int height, int color) {
         paint.setColor(color);
         paint.setStyle(Style.FILL);
@@ -102,7 +126,7 @@ public class AndroidGraphics implements Graphics {
     }
 
     public void drawPixmap(Pixmap pixmap, int x, int y, int srcX, int srcY,
-            int srcWidth, int srcHeight) {
+                           int srcWidth, int srcHeight) {
         srcRect.left = srcX;
         srcRect.top = srcY;
         srcRect.right = srcX + srcWidth - 1;
@@ -117,7 +141,7 @@ public class AndroidGraphics implements Graphics {
     }
 
     public void drawPixmap(Pixmap pixmap, int x, int y) {
-        canvas.drawBitmap(((AndroidPixmap)pixmap).bitmap, x, y, null);
+        canvas.drawBitmap(((AndroidPixmap) pixmap).bitmap, x, y, null);
     }
 
     @Override

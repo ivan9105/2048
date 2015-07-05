@@ -16,28 +16,24 @@ public class World {
         blocks = new ArrayList<>();
 
         Graphics g = game.getGraphics();
-        int heightScreen = g.getHeight();
         int widthScreen = g.getWidth();
+        int size = 55;
+        int blocksWidth = 55 * 4;
 
-//        int size = 50;
-//        int margin = 5;
-//
-//        int startX = 30;
-//        int startY = 100;
+        int marginHeight = widthScreen - blocksWidth;
 
-//        Todo сделать расчет чтобы с пробелмаи они там помещалист
+        int margin = marginHeight / 6;
+        int startX = (int) (margin * 1.5);
+        int startY = 100;
 
-        for (int i = 0; i < 4; i++) {
-            boolean isMargin = false;
-            for (int j = 0; j < 4; j++) {
-                if (!isMargin) {
-//                    blocks.add(new Block(i * size + startX, j * size + startY));
-                    isMargin = true;
-                } else {
-//                    blocks.add(new Block(i * size + startX + margin, j * size + startY));
-                }
-            }
-        }
+        //[0, 0]
+        blocks.add(new Block(startX, startY));
+        //[0, 1]
+        blocks.add(new Block(startX + margin + size, startY));
+        //[0, 2]
+        blocks.add(new Block(startX + (margin * 2) + (size * 2), startY));
+        //[0, 3]
+        blocks.add(new Block(startX + (margin * 3) + (size * 3), startY));
     }
 
     public List<Block> getBlocks() {

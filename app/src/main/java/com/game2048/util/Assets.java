@@ -7,5 +7,4 @@ import com.framework.Pixmap;
  */
 public class Assets {
     public static Pixmap bg;
-    public static Pixmap block;
 }
