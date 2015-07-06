@@ -22,22 +22,27 @@ public class GameScreen extends Screen {
     public GameScreen(Game game) {
         super(game);
         world = new World(game);
+        generateTips();
+        generateTips();
     }
 
     private void generateTips() {
         Random random = new Random();
         int value = generateValue(random);
-
         Block block = getItem(random);
+        block.setValue(value);
     }
 
     private Block getItem(Random random) {
-        //Todo
-        return null;
+        Block item = world.getBlocks().get(random.nextInt(world.getBlocks().size()));
+        if (item.getValue() > 0) {
+            return getItem(random);
+        }
+        return item;
     }
 
     private int generateValue(Random random) {
-        int value = random.nextInt(4);
+        int value = random.nextInt(5);
         if (value != 4 && value != 2) {
             return generateValue(random);
         }
