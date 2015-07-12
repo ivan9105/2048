@@ -1,12 +1,15 @@
 package com.game2048.screen;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import com.framework.Game;
 import com.framework.Graphics;
 import com.framework.Screen;
+import com.game2048.Game2048;
 import com.game2048.model.Block;
 import com.game2048.model.World;
+import com.game2048.model.enums.Direction;
 import com.game2048.util.Assets;
 
 import java.util.List;
@@ -53,8 +56,8 @@ public class GameScreen extends Screen {
 
     }
 
-    public void update() {
-        //Todo create enum left right up down в зависимотси от этого выполнять логику
+    public void update(Direction direction) {
+        Log.d(Game2048.LOG_TAG, direction.getId());
     }
 
     @Override

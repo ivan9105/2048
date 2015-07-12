@@ -22,7 +22,8 @@ public class Game2048 extends AndroidGame {
 
     private float x1 = 0, x2 = 0, y1 = 0, y2 = 0;
     //if move length < threshold direction == screen part
-    private float threshold = 50;
+    //threshold percent from screenHeight, screenWidth
+    private double thresholdX = 3, thresholdY = 1.5;
 
     private int screenWidth, screenHeight;
 
@@ -68,46 +69,33 @@ public class Game2048 extends AndroidGame {
             }
 
             if (x1 > 0 && y1 > 0 && x2 > 0 && y2 > 0) {
-                Log.d(LOG_TAG, String.format("(%s, %s) (%s, %s)", x1, y1, x2, y2));
-
                 float differenceX = x1 - x2;
                 float differenceY = y1 - y2;
+                float percentValueX = (float) ((screenWidth / 100) * thresholdX);
+                float percentValueY = (float) ((screenHeight / 100) * thresholdY);
 
-                Direction direction;
-                if (y1 < y2 && Math.abs(differenceY) > Math.abs(differenceX)) {
+                Direction direction = null;
+                if (y1 < y2 && Math.abs(differenceY) > Math.abs(differenceX)
+                                                                  && Math.abs(differenceY) > percentValueY) {
                     direction = Direction.BOTTOM;
-                } else if (y2 < y1 && Math.abs(differenceY) > Math.abs(differenceX)) {
+                } else if (y2 < y1 && Math.abs(differenceY) > Math.abs(differenceX)
+                                                                  && Math.abs(differenceY) > percentValueY) {
                     direction = Direction.UP;
-                } else if (x1 < x2 && Math.abs(differenceX) > Math.abs(differenceY)) {
+                } else if (x1 < x2 && Math.abs(differenceX) > Math.abs(differenceY)
+                                                                  && Math.abs(differenceX) > percentValueX) {
                     direction = Direction.RIGHT;
-                } else if (x2 < x1 && Math.abs(differenceX) > Math.abs(differenceY)) {
+                } else if (x2 < x1 && Math.abs(differenceX) > Math.abs(differenceY)
+                                                                  && Math.abs(differenceX) > percentValueX) {
                     direction = Direction.LEFT;
-                } else if (differenceX == differenceY) {
-                    //Todo нужно достать разрешение экрана и разбираться в какой части экрана была нажата кнопка
-                    //Todo можно по проценту от максимального разрешения узнавать в какой части экрана нажато
                 }
-
-                /*
-                по основному расхождение по х или по у
-                         х1       у1          х2          у2
-                down (636.4107, 241.87402) (623.4227, 1641.1451)
-                up (574.4681, 1751.0879) (542.4977, 69.96356)
-                right (209.80574, 986.4862) (1034.838, 908.94574)
-                left (938.13135, 1196.3768) (112.89547, 1210.3696)
-
-
-                 */
-
-
                 x1 = 0;
                 x2 = 0;
                 y1 = 0;
                 y2 = 0;
-
-                //Todo здесь нужно определять в какую сторону мы нажали кнопку
+                if (direction != null) {
+                    ((GameScreen) getCurrentScreen()).update(direction);
+                }
             }
-
-//            ((GameScreen) getCurrentScreen()).update();
         }
         return super.doTouch(view, event);
     }
