@@ -9,6 +9,8 @@ import android.graphics.Bitmap.Config;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -54,6 +56,13 @@ public abstract class AndroidGame extends Activity implements Game {
         input = new AndroidInput(this, renderView, scaleX, scaleY);
         screen = getStartScreen();
         setContentView(renderView);
+        renderView.setClickable(true);
+        renderView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return doTouch(v, event);
+            }
+        });
         
         PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "GLGame");
@@ -114,5 +123,9 @@ public abstract class AndroidGame extends Activity implements Game {
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(0);
         super.onDestroy();
+    }
+
+    public boolean doTouch(View view, MotionEvent event) {
+        return true;
     }
 }

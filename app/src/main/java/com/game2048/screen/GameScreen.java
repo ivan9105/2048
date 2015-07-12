@@ -4,7 +4,6 @@ import android.graphics.Color;
 
 import com.framework.Game;
 import com.framework.Graphics;
-import com.framework.Input;
 import com.framework.Screen;
 import com.game2048.model.Block;
 import com.game2048.model.World;
@@ -51,14 +50,11 @@ public class GameScreen extends Screen {
 
     @Override
     public void update(float deltaTime) {
-        List<Input.TouchEvent> touchEvents = game.getInput().getTouchEvents();
-        int len = touchEvents.size();
-        for (int i = 0; i < len; i++) {
-            Input.TouchEvent event = touchEvents.get(i);
-            if (event.type == Input.TouchEvent.TOUCH_UP) {
 
-            }
-        }
+    }
+
+    public void update() {
+        //Todo create enum left right up down в зависимотси от этого выполнять логику
     }
 
     @Override
