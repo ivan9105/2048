@@ -70,13 +70,14 @@ public class GameScreen extends Screen {
                 collectLine(line, direction);
             }
         }
+        generateTips();
     }
 
     private Block[] collectLine(Block[] line, Direction direction) {
         boolean isCollected = false;
 
         List<Block> notZeroLine = new ArrayList<>();
-        for (int i = 0; i < line.length - 1; i++) {
+        for (int i = 0; i < line.length; i++) {
             //избавляемся от нулей
             if (line[i].getValue() > 0) {
                 notZeroLine.add(line[i]);
