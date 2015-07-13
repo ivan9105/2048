@@ -30,10 +30,23 @@ public class GameScreen extends Screen {
     }
 
     private void generateTips() {
-        Random random = new Random();
-        int value = generateValue(random);
-        Block block = getItem(random);
-        block.setValue(value);
+        if (!isGameOver()) {
+            Random random = new Random();
+            int value = generateValue(random);
+            Block block = getItem(random);
+            block.setValue(value);
+        } else {
+            game.setScreen(new GameScreen(game));
+        }
+    }
+
+    private boolean isGameOver() {
+        for (Block block : world.getBlocks()) {
+            if (block.getValue() == 0) {
+                return  false;
+            }
+        }
+        return true;
     }
 
     private Block getItem(Random random) {
@@ -88,6 +101,7 @@ public class GameScreen extends Screen {
             if (notZeroLine.get(i).getValue() == notZeroLine.get(i + 1).getValue()) {
                 notZeroLine.get(i).setValue(notZeroLine.get(i).getValue() * 2);
                 notZeroLine.get(i + 1).setValue(0);
+                //если убрать за один шаг одно сложение
                 isCollected = true;
             }
         }
