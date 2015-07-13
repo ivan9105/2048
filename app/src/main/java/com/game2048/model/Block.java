@@ -1,9 +1,12 @@
 package com.game2048.model;
 
+import java.util.UUID;
+
 /**
  * Created by Иван on 26.06.2015.
  */
 public class Block {
+    private UUID id;
     private int x;
     private int y;
     private int value;
@@ -13,11 +16,13 @@ public class Block {
     public Block(int x, int y) {
         this.x = x;
         this.y = y;
+        id = UUID.randomUUID();
     }
 
     public Block(int x, int y, int value) {
         this(x, y);
         this.value = value;
+        id = UUID.randomUUID();
     }
 
     public int getY() {
