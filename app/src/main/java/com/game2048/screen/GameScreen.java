@@ -22,6 +22,7 @@ public class GameScreen extends Screen {
     public GameScreen(Game game) {
         super(game);
         world = new World(game);
+        isGameOver = false;
         generateTips();
         generateTips();
     }

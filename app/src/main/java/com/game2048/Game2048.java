@@ -68,35 +68,39 @@ public class Game2048 extends AndroidGame {
                     break;
             }
 
-            if (x1 > 0 && y1 > 0 && x2 > 0 && y2 > 0) {
-                float differenceX = x1 - x2;
-                float differenceY = y1 - y2;
-                float percentValueX = (float) ((screenWidth / 100) * thresholdX);
-                float percentValueY = (float) ((screenHeight / 100) * thresholdY);
+            if (!gameScreen.isGameOver()) {
+                if (x1 > 0 && y1 > 0 && x2 > 0 && y2 > 0) {
+                    float differenceX = x1 - x2;
+                    float differenceY = y1 - y2;
+                    float percentValueX = (float) ((screenWidth / 100) * thresholdX);
+                    float percentValueY = (float) ((screenHeight / 100) * thresholdY);
 
-                Direction direction = null;
-                if (y1 < y2 && Math.abs(differenceY) > Math.abs(differenceX)
-                                                                  && Math.abs(differenceY) > percentValueY) {
-                    direction = Direction.BOTTOM;
-                } else if (y2 < y1 && Math.abs(differenceY) > Math.abs(differenceX)
-                                                                  && Math.abs(differenceY) > percentValueY) {
-                    direction = Direction.UP;
-                } else if (x1 < x2 && Math.abs(differenceX) > Math.abs(differenceY)
-                                                                  && Math.abs(differenceX) > percentValueX) {
-                    direction = Direction.RIGHT;
-                } else if (x2 < x1 && Math.abs(differenceX) > Math.abs(differenceY)
-                                                                  && Math.abs(differenceX) > percentValueX) {
-                    direction = Direction.LEFT;
-                }
-                x1 = 0;
-                x2 = 0;
-                y1 = 0;
-                y2 = 0;
-                if (direction != null) {
-                    if (!gameScreen.isGameOver()) {
+                    Direction direction = null;
+                    if (y1 < y2 && Math.abs(differenceY) > Math.abs(differenceX)
+                            && Math.abs(differenceY) > percentValueY) {
+                        direction = Direction.BOTTOM;
+                    } else if (y2 < y1 && Math.abs(differenceY) > Math.abs(differenceX)
+                            && Math.abs(differenceY) > percentValueY) {
+                        direction = Direction.UP;
+                    } else if (x1 < x2 && Math.abs(differenceX) > Math.abs(differenceY)
+                            && Math.abs(differenceX) > percentValueX) {
+                        direction = Direction.RIGHT;
+                    } else if (x2 < x1 && Math.abs(differenceX) > Math.abs(differenceY)
+                            && Math.abs(differenceX) > percentValueX) {
+                        direction = Direction.LEFT;
+                    }
+                    x1 = 0;
+                    x2 = 0;
+                    y1 = 0;
+                    y2 = 0;
+
+
+                    if (direction != null) {
                         ((GameScreen) getCurrentScreen()).update(direction);
                     }
                 }
+            } else {
+                setScreen(getStartScreen());
             }
         }
         return super.doTouch(view, event);
