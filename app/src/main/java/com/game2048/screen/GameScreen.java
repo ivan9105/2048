@@ -195,7 +195,7 @@ public class GameScreen extends Screen {
                         block.getValue() > 0 ? String.valueOf(block.getValue()) : "", fontColor);
             }
         } else {
-            //Todo draw text
+            g.drawText("Game Over", 25, 0xff000000 | 0x776e65);
         }
     }
 

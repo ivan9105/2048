@@ -91,6 +91,18 @@ public class AndroidGraphics implements Graphics {
         canvas.drawLine(x, y, x2, y2, paint);
     }
 
+    @Override
+    public void drawText(String text, int fontSize, int textColor) {
+        Typeface tf = Typeface.create(Typeface.DEFAULT_BOLD, Typeface.BOLD);
+        paint.setColor(textColor);
+        paint.setStyle(Style.STROKE);
+        paint.setTextSize(fontSize);
+        paint.setTypeface(tf);
+        paint.setAntiAlias(true);
+        float textWidth = paint.measureText(text);
+        canvas.drawText(text, (canvas.getWidth() / 2) - textWidth / 2, canvas.getHeight() / 2, paint);
+    }
+
     public void drawRect(int x, int y, int width, int height, int color) {
         paint.setColor(color);
         paint.setStyle(Style.FILL);

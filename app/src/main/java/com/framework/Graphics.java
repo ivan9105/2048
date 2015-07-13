@@ -13,6 +13,8 @@ public interface Graphics {
 
     public void drawLine(int x, int y, int x2, int y2, int color);
 
+    public void drawText(String text, int fontSize, int textColor);
+
     public void drawRect(int x, int y, int width, int height, int color);
 
     public void drawRectWithText(int x, int y, int width, int height, int color, String text, int textColor);

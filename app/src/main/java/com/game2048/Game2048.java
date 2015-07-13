@@ -18,8 +18,6 @@ import com.game2048.screen.LoadingScreen;
  * Created by Иван on 22.06.2015.
  */
 public class Game2048 extends AndroidGame {
-    public static final String LOG_TAG = "myTag";
-
     private float x1 = 0, x2 = 0, y1 = 0, y2 = 0;
     //if move length < threshold direction == screen part
     //threshold percent from screenHeight, screenWidth
