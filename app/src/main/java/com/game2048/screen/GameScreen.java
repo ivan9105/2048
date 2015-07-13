@@ -187,9 +187,57 @@ public class GameScreen extends Screen {
 
         List<Block> blocks = world.getBlocks();
         for (Block block : blocks) {
-            g.drawRectWithText(block.getX(), block.getY(), 55, 55, Color.BLACK,
-                    block.getValue() > 0 ? String.valueOf(block.getValue()) : "", Color.GREEN);
+            int fontColor = block.getValue() < 16 ? 0xff000000 | 0x776e65 : 0xff000000 | 0xf9f6f2;
+            int rectColor = getRectColor(block);
+            g.drawRectWithText(block.getX(), block.getY(), 55, 55, rectColor,
+                    block.getValue() > 0 ? String.valueOf(block.getValue()) : "", fontColor);
         }
+    }
+
+    private int getRectColor(Block block) {
+        int rectColor;
+        switch (block.getValue()) {
+            case 0:
+                rectColor = 0xeee4da;
+                break;
+            case 2:
+                rectColor = 0xeee4da;
+                break;
+            case 4:
+                rectColor = 0xede0c8;
+                break;
+            case 8:
+                rectColor = 0xf2b179;
+                break;
+            case 16:
+                rectColor = 0xf59563;
+                break;
+            case 32:
+                rectColor = 0xf67c5f;
+                break;
+            case 64:
+                rectColor = 0xf65e3b;
+                break;
+            case 128:
+                rectColor = 0xedcf72;
+                break;
+            case 256:
+                rectColor = 0xedcc61;
+                break;
+            case 512:
+                rectColor = 0xedc850;
+                break;
+            case 1024:
+                rectColor = 0xedc53f;
+                break;
+            case 2048:
+                rectColor = 0xedc22e;
+                break;
+            default:
+                rectColor = 0xcdc1b4;
+                break;
+        }
+        return 0xff000000 | rectColor;
     }
 
     @Override

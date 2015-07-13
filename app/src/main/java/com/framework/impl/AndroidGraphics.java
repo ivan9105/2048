@@ -108,11 +108,12 @@ public class AndroidGraphics implements Graphics {
 
         canvas.drawRect(rect, paint);
 
-        Typeface tf = Typeface.create("Arial", Typeface.BOLD);
+        Typeface tf = Typeface.create(Typeface.DEFAULT_BOLD, Typeface.BOLD);
         paint.setColor(textColor);
         paint.setStyle(Style.STROKE);
-        paint.setTextSize(21);
+        paint.setTextSize(18);
         paint.setTypeface(tf);
+        paint.setAntiAlias(true);
         float textWidth = paint.measureText(text);
 
         //hard code
