@@ -52,6 +52,8 @@ public class Game2048 extends AndroidGame {
     @Override
     public boolean doTouch(View view, MotionEvent event) {
         if (getCurrentScreen() instanceof GameScreen) {
+            GameScreen gameScreen = (GameScreen) getCurrentScreen();
+
             //event
             int actionMask = event.getActionMasked();
 
@@ -93,7 +95,9 @@ public class Game2048 extends AndroidGame {
                 y1 = 0;
                 y2 = 0;
                 if (direction != null) {
-                    ((GameScreen) getCurrentScreen()).update(direction);
+                    if (!gameScreen.isGameOver()) {
+                        ((GameScreen) getCurrentScreen()).update(direction);
+                    }
                 }
             }
         }

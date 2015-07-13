@@ -1,12 +1,8 @@
 package com.game2048.screen;
 
-import android.graphics.Color;
-import android.util.Log;
-
 import com.framework.Game;
 import com.framework.Graphics;
 import com.framework.Screen;
-import com.game2048.Game2048;
 import com.game2048.model.Block;
 import com.game2048.model.World;
 import com.game2048.model.enums.Direction;
@@ -20,7 +16,8 @@ import java.util.Random;
  * Created by Иван on 26.06.2015.
  */
 public class GameScreen extends Screen {
-    World world;
+    private World world;
+    private boolean isGameOver;
 
     public GameScreen(Game game) {
         super(game);
@@ -30,23 +27,23 @@ public class GameScreen extends Screen {
     }
 
     private void generateTips() {
-        if (!isGameOver()) {
-            Random random = new Random();
-            int value = generateValue(random);
-            Block block = getItem(random);
-            block.setValue(value);
-        } else {
-            game.setScreen(new GameScreen(game));
-        }
+        Random random = new Random();
+        int value = generateValue(random);
+        Block block = getItem(random);
+        block.setValue(value);
     }
 
-    private boolean isGameOver() {
+    private boolean checkGameOver() {
         for (Block block : world.getBlocks()) {
             if (block.getValue() == 0) {
-                return  false;
+                return false;
             }
         }
         return true;
+    }
+
+    public boolean isGameOver() {
+        return isGameOver;
     }
 
     private Block getItem(Random random) {
@@ -67,7 +64,6 @@ public class GameScreen extends Screen {
 
     @Override
     public void update(float deltaTime) {
-
     }
 
     public void update(Direction direction) {
@@ -83,7 +79,11 @@ public class GameScreen extends Screen {
                 collectLine(line, direction);
             }
         }
-        generateTips();
+
+        isGameOver = checkGameOver();
+        if (!isGameOver) {
+            generateTips();
+        }
     }
 
     private Block[] collectLine(Block[] line, Direction direction) {
@@ -182,15 +182,20 @@ public class GameScreen extends Screen {
 
     @Override
     public void present(float deltaTime) {
+
         Graphics g = game.getGraphics();
         g.drawPixmap(Assets.bg, 0, 0);
 
-        List<Block> blocks = world.getBlocks();
-        for (Block block : blocks) {
-            int fontColor = block.getValue() < 16 ? 0xff000000 | 0x776e65 : 0xff000000 | 0xf9f6f2;
-            int rectColor = getRectColor(block);
-            g.drawRectWithText(block.getX(), block.getY(), 55, 55, rectColor,
-                    block.getValue() > 0 ? String.valueOf(block.getValue()) : "", fontColor);
+        if (!isGameOver) {
+            List<Block> blocks = world.getBlocks();
+            for (Block block : blocks) {
+                int fontColor = block.getValue() < 16 ? 0xff000000 | 0x776e65 : 0xff000000 | 0xf9f6f2;
+                int rectColor = getRectColor(block);
+                g.drawRectWithText(block.getX(), block.getY(), 55, 55, rectColor,
+                        block.getValue() > 0 ? String.valueOf(block.getValue()) : "", fontColor);
+            }
+        } else {
+            //Todo draw text
         }
     }
 
